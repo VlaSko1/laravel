@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Articles;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class IndexController extends Controller
 {
@@ -32,7 +33,13 @@ class IndexController extends Controller
         if(!isset($this->articles[$id])) {
             return abort(404);
         }
+
+        $randChar = mt_rand(1, 4);
+        $date = Carbon::now();
+
         return view('articles.article', [
+            'char' => $randChar,
+            'date' => $date,
             'article' => $this->articles[$id]
         ]);
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Aggregator;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class IndexController extends Controller
 {
@@ -560,6 +561,22 @@ class IndexController extends Controller
             ]
         ];
 
+
+    }
+    public function getIndexAuth() {
+        return view('aggregator.auth');
+    }
+
+    public function checkAuth(Request $request)
+    {
+        $all = $request->all();
+        $loginAuth = $all['login'];
+        $pass = $all['password'];
+        $save = $all['password'];
+        $submitOn = $all['submin_on'];
+
+
+        return redirect()->route('auth');
 
     }
 
