@@ -3,13 +3,18 @@
 namespace App\Http\Controllers\Aggregator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AggregatorFeedbackRequest;
+use App\Http\Requests\AggregatorOrderRequest;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Services\FileDbService;
 
 class IndexController extends Controller
 {
     protected $categories = [];
     protected $news = [];
+    protected $feedbackAdd = null;
+    protected $orderMake = null;
     public function __construct()
     {
         $this->categories = [
@@ -607,5 +612,42 @@ class IndexController extends Controller
             'categoryId' => $id,
             'nameCategory' => $this->categories[$id]
         ]);
+    }
+
+    public function indexFeedback()
+    {
+        return view('aggregator.feedback');
+    }
+    public function addFeedback(AggregatorFeedbackRequest $request)
+    {
+        $data = $request->only(['name', 'feedback']);
+        if((new FileDbService())->saveFileFeedback($data)){
+            $this->feedbackAdd = 1;
+        }
+
+
+        return view('aggregator.feedback', [
+            'feedbackAdd' => $this->feedbackAdd
+        ]);
+    }
+    public function indexOrderData()
+    {
+        return view('aggregator.orderData', [
+            'categories' => $this->categories
+        ]);
+    }
+    public function makeOrderData(AggregatorOrderRequest $request)
+    {
+        $data = $request->only(['name', 'phone', 'email', 'category']);
+        if((new FileDbService()) -> saveFileOrder($data)) {
+            $this->orderMake = 1;
+        };
+
+
+        return view('aggregator.orderData', [
+            'categories' => $this->categories,
+            'orderMake' => $this->orderMake
+        ]);
+
     }
 }

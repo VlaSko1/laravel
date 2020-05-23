@@ -9,13 +9,11 @@
 </head>
 <body>
 <div style="margin-left: 15px;">
-    @if($char === 2)
+
         {{$article}}
-    @elseif($char === 3)
-        {{ $date }}
-    @else
-        Hello
-    @endif
+
+
+
 
 </div>
 </body>

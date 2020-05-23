@@ -4,7 +4,7 @@
 body, html {
     height: 100%;
     margin: 0;
-    min-width: 950px;
+    min-width: 1000px;
 }
 .wrapper {
     min-height: 100%;
@@ -82,7 +82,7 @@ h1 {
 .link_nav {
     display: block;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 14px;
     text-transform: uppercase;
     color: #2F4F4F;
     padding: 5px;
@@ -311,6 +311,59 @@ footer{
     outline: none;
     font-family: "Times New Roman", Times, Serif;
 }
+/* Стили для страницы "Обратная связь */
+.feedback_form, .order_form{
+    display: flex;
+    margin: 0 auto;
+    width: 400px;
+    flex-direction: column;
+    align-items: center;
+}
+.feedback_input, .order_input {
+    box-sizing: border-box;
+    width: 400px;
+    padding: 0 10px;
+    font-size: 10px;
+    font-family: "Times New Roman", Times, Serif;
+    height: 30px;
+    font-size: 16px;
+}
+.feedback_textarea {
+    box-sizing: border-box;
+    width: 400px;
+    font-size: 16px;
+    font-family: "Times New Roman", Times, Serif;
+    padding: 5px 10px;
+    resize: none;
+    height: 100px;
+}
+.feedback_form_submit, .order_form_submit {
+    width: 205px;
+    height: 30px;
+    margin-top: 15px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+}
+.feedback_add, .order_make{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+    font-family: "Times New Roman", Times, Serif;
+}
+/* Стили для страницы заказы выгрузки данных*/
+.order_form_label_select{
+    width: 400px;
+    margin-bottom: 20px;
+}
+.order_form_label_select .category_select{
+    height: 30px;
+    width: 160px;
+}
+
+
+/* Медиа-запросы */
 @media screen and (max-width: 1550px) {
     .container{
         width: 95%;
@@ -332,7 +385,7 @@ footer{
         font-size: 1.1rem;
     }
     .link_nav {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
     .footer_year {
         font-size: 0.9rem;

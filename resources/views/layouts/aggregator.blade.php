@@ -22,10 +22,12 @@
                         </div>
                         <nav class="menu">
                             <ul class="menu__main">
-                                <li><a href="{{route('index')}}" class="link_nav">Главная</a></li>
-                                <li><a href="{{route('categories')}}" class="link_nav">Категории новостей</a></li>
-                                <li><a href="{{route('auth')}}" class="link_nav">Авторизация</a></li>
-                                <li><a href="{{route('addNews')}}" class="link_nav">Добавить новость</a></li>
+                                <li class="main_menu_list"><a href="{{route('index')}}" class="link_nav">Главная</a></li>
+                                <li class="main_menu_list"><a href="{{route('categories')}}" class="link_nav">Категории новостей</a></li>
+                                <li class="main_menu_list"><a href="{{route('auth')}}" class="link_nav">Авторизация</a></li>
+                                <li class="main_menu_list"><a href="{{route('addNews')}}" class="link_nav">Добавить новость</a></li>
+                                <li class="main_menu_list"><a href="{{route('orderData')}}" class="link_nav">Выгрузка данных</a></li>
+                                <li class="main_menu_list"><a href="{{route('indexFeedback')}}" class="link_nav">Обратная связь</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -33,16 +35,20 @@
             </div>
         </header>
         <main>
-            @yield('content')
+            <div class="container">
+                @yield('content')
+            </div>
         </main>
     </div>
     <footer>
         <nav class="menu footer_class">
             <ul class="menu__main">
-                <li><a href="{{route('index')}}" class="link_nav">Главная</a></li>
-                <li><a href="{{route('categories')}}" class="link_nav">Категории новостей</a></li>
-                <li><a href="{{route('auth')}}" class="link_nav">Авторизация</a></li>
-                <li><a href="{{route('addNews')}}" class="link_nav">Добавить новость</a></li>
+                <li class="main_menu_list"><a href="{{route('index')}}" class="link_nav">Главная</a></li>
+                <li class="main_menu_list"><a href="{{route('categories')}}" class="link_nav">Категории новостей</a></li>
+                <li class="main_menu_list"><a href="{{route('auth')}}" class="link_nav">Авторизация</a></li>
+                <li class="main_menu_list"><a href="{{route('addNews')}}" class="link_nav">Добавить новость</a></li>
+                <li class="main_menu_list"><a href="{{route('orderData')}}" class="link_nav">Выгрузка данных</a></li>
+                <li class="main_menu_list"><a href="{{route('indexFeedback')}}" class="link_nav">Обратная связь</a></li>
             </ul>
         </nav>
         <p class="footer_year">1996 - @php echo date('Y') @endphp годы</p>

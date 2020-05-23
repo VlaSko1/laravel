@@ -10,6 +10,7 @@ Route::get('/education', 'IndexController@education') -> name('education');
 Route::get('/skills', 'IndexController@skills') -> name('skills');
 Route::get('/interests', 'IndexController@interests') -> name('interests');
 Route::get('/awards', 'IndexController@awards') -> name('awards');
+Route::get('/image', 'Articles\IndexController@getProfileImage');
 
 Route::group(['prefix' => 'admin'], function() {
 
@@ -34,4 +35,8 @@ Route::group(['prefix' => 'aggregator'], function() {
     Route::post('/auth.html', 'Aggregator\IndexController@checkAuth') ->name('checkAuth');
     Route::get('/admin/add_news.html', 'Aggregator\AdminController@indexAddNews') -> name('adminIndexAdd');
     Route::post('/admin/add_news.html', 'Aggregator\AdminController@addNews') -> name('addNews');
+    Route::get('/feedback.html', 'Aggregator\IndexController@indexFeedback') -> name('indexFeedback');
+    Route::post('/feedback.html', 'Aggregator\IndexController@addFeedback') -> name('addFeedback');
+    Route::get('/order_data.html', 'Aggregator\IndexController@indexOrderData') -> name('orderData');
+    Route::post('/order_data.html', 'Aggregator\IndexController@makeOrderData') -> name('makeOrderData');
 });
