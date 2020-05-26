@@ -8,6 +8,7 @@ use App\Http\Requests\AggregatorOrderRequest;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Services\FileDbService;
+use App\Aggregator;
 
 class IndexController extends Controller
 {
@@ -586,31 +587,38 @@ class IndexController extends Controller
     }
 
     public function getCategories() {
+        $objAggregator = new Aggregator();
+        $categories = $objAggregator->allCategories();
 
         return view('aggregator.listCategories', [
-            'categories' => $this->categories
+            'categories' => $categories
         ]);
     }
     public function getCategory(int $id) {
-        if(!isset($this->categories[$id])) {
+        $objAggregator = new Aggregator();
+        $category = $objAggregator->issetCategory($id);
+        if(!$category) {
             return abort(404);
         }
+        $newsCategory = $objAggregator->getNewsFromCategory($id);
+
         return view('aggregator.category', [
-            'news' => $this->news[$id],
-            'category' => $this->categories[$id],
-            'categoryId' => $id
+            'newsCategory' => $newsCategory,
+            'category' => $category->category
         ]);
     }
 
     public function getNews(int $id, int $idn) {
-        if(!isset($this->news[$id][$idn])) {
+        $objNews = new Aggregator();
+        $news = $objNews->getOneNews($idn);
+        if(empty($news)) {
             return abort(404);
         }
 
         return view('aggregator.news', [
-            'news' => $this->news[$id][$idn],
-            'categoryId' => $id,
-            'nameCategory' => $this->categories[$id]
+            'news' => $news[0],
+            'categoryId' => $news[0]->category_id,
+            'nameCategory' => $news[0]->category,
         ]);
     }
 

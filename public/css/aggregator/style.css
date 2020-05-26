@@ -141,8 +141,8 @@ footer{
 }
 .category {
     display: flex;
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
     justify-content: center;
     align-items: center;
     background: linear-gradient(#DCDCDC, #A9A9A9);
@@ -151,7 +151,7 @@ footer{
     font-size: 18px;
     border: 1px solid white;
     border-radius: 20px;
-
+    text-transform: uppercase;
 }
 .category:hover{
     box-shadow: 0 0 5px 1px black;
@@ -173,6 +173,7 @@ footer{
 }
 .category_news span {
     font-size: 16px;
+    transition: all 0s;
 }
 .briefly_news {
     margin: 8px 0 20px 0;

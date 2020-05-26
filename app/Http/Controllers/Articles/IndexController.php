@@ -7,6 +7,7 @@ use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use App\Article;
 
 class IndexController extends Controller
 {
@@ -24,28 +25,28 @@ class IndexController extends Controller
 
     public function listArticles()
     {
+        $objArticle = new Article();
+        $articles = $objArticle->allArticles();
+        $countArticles = $objArticle->getCount();
 
         return view('articles.listArticles', [
-            'articles' => $this->articles
+            'articles' => $articles,
+            'countArticles' => $countArticles
         ]);
 
     }
     public function getArticle(int $id)
     {
-        if(!isset($this->articles[$id])) {
+        $objArticle = new Article();
+        $article = $objArticle->getArticleById($id);
+
+        if(!$article) {
             return abort(404);
         }
 
-        /*$randChar = mt_rand(1, 4);
-        $date = Carbon::now();
 
         return view('articles.article', [
-            'char' => $randChar,
-            'date' => $date,
-            'article' => $this->articles[$id]
-        ]);*/
-        return view('articles.article', [
-            'article' => $this -> articles[$id]
+            'article' => $article
         ]);
     }
 
