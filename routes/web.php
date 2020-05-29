@@ -22,6 +22,10 @@ Route::group(['prefix' => 'admin'], function() {
 
     Route::post('/articles.html', 'Articles\IndexController@saveArticle');
 
+    //news
+    Route::resource('/categories', 'News\CategoryController');
+    Route::resource('/news', 'News\News1Controller');
+
 });
 
 Route::group(['prefix' => 'aggregator'], function() {
@@ -40,3 +44,5 @@ Route::group(['prefix' => 'aggregator'], function() {
     Route::get('/order_data.html', 'Aggregator\IndexController@indexOrderData') -> name('orderData');
     Route::post('/order_data.html', 'Aggregator\IndexController@makeOrderData') -> name('makeOrderData');
 });
+
+
