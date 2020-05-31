@@ -8,7 +8,7 @@ use App\Http\Requests\AggregatorOrderRequest;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Services\FileDbService;
-use App\Aggregator;
+use App\Models\Aggregator;
 
 class IndexController extends Controller
 {

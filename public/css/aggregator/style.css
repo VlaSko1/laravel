@@ -139,6 +139,9 @@ footer{
     height: 300px;
 
 }
+.category_container{
+    position: relative;
+}
 .category {
     display: flex;
     height: 150px;
@@ -152,6 +155,47 @@ footer{
     border: 1px solid white;
     border-radius: 20px;
     text-transform: uppercase;
+    text-align: center;
+}
+.category_edit{
+    position: absolute;
+    display: block;
+    width: 38px;
+    height: 38px;
+    border-radius: 5px;
+    background-color: #A9A9A9;
+    font-size: 14px;
+    line-height: 38px;
+    top: 9px;
+    left: 9px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    color: #2F4F4F;
+}
+.category_edit:hover, .category_delete:hover{
+    color: red;
+}
+.category_edit:active, .category_delete:active{
+    color: blue;
+}
+.category_delete{
+    position: absolute;
+    display: block;
+    width: 52px;
+    height: 38px;
+    background-color: #A9A9A9;
+    border-radius: 5px;
+    top: 9px;
+    right: 9px;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 38px;
+    color: #2F4F4F;
+    border: none;
+    outline: none;
 }
 .category:hover{
     box-shadow: 0 0 5px 1px black;
@@ -170,6 +214,7 @@ footer{
     color: black;
     text-align: center;
     outline: none;
+    margin-top: 15px;
 }
 .category_news span {
     font-size: 16px;
@@ -189,6 +234,13 @@ footer{
     font-size: 18px;
     text-indent: 50px;
     text-align: justify;
+}
+.edit_news, .delete_news{
+    font-family: "Times New Roman", Times, Serif;
+    font-size: 18px;
+}
+.edit_news{
+    margin-right: 30px;
 }
 .return_category{
     display: block;
@@ -219,6 +271,7 @@ footer{
 .category_news:active{
     text-shadow: 0 1px 4px #2F4F4F;
 }
+
 .auth_form{
     width: 600px;
     margin: 0 auto;
@@ -353,6 +406,34 @@ footer{
     font-size: 20px;
     font-family: "Times New Roman", Times, Serif;
 }
+.feedback_table{
+    border-collapse: collapse;
+    border: 1px solid black;
+    margin: 0 auto;
+    width: 930px;
+    margin-bottom: 20px;
+}
+.border_name{
+    width: 12%;
+}
+.border_edit{
+    width:9%;
+}
+.border_delete{
+    width:8%;
+}
+.feedback_table td{
+    border: 1px solid black;
+    padding: 2px;
+}
+.feedback_table th{
+    border: 1px solid black;
+    padding: 2px;
+}
+.feedback_message_paragraph{
+    text-align: center;
+}
+
 /* Стили для страницы заказы выгрузки данных*/
 .order_form_label_select{
     width: 400px;
@@ -363,6 +444,41 @@ footer{
     width: 160px;
 }
 
+/* Стили для страницы - создать категорию */
+.create_category_form {
+    width: 300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.add_category_input{
+    box-sizing: border-box;
+    width: 300px;
+    padding: 0 10px;
+    font-family: "Times New Roman", Times, Serif;
+    height: 30px;
+    font-size: 16px;
+}
+.add_category_submit{
+    width: 180px;
+    height: 30px;
+    margin-top: 20px;
+
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+}
+.add_category_label{
+    width: 300px;
+}
+.message {
+    height: 30px;
+    text-align: center;
+    font-family: "Times New Roman", Times, Serif;
+    font-size: 16px;
+}
 
 /* Медиа-запросы */
 @media screen and (max-width: 1550px) {

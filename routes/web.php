@@ -22,21 +22,33 @@ Route::group(['prefix' => 'admin'], function() {
 
     Route::post('/articles.html', 'Articles\IndexController@saveArticle');
 
+    //news
+    Route::resource('/categories', 'News\CategoryController');
+    Route::resource('/news', 'News\News1Controller');
+
 });
 
 Route::group(['prefix' => 'aggregator'], function() {
 
     Route::view('/index.html', 'aggregator.index') -> name('index');
-    Route::get('/categories.html', 'Aggregator\IndexController@getCategories') -> name('categories');
-    Route::get('/category/{id}.html', 'Aggregator\IndexController@getCategory') -> name('category');
+    Route::resource('/categories', 'Aggregator\AggregatorCategoryController');
+    Route::resource('/feedback', 'Aggregator\FeedbackController');
+    Route::resource('/news', 'Aggregator\NewsController');
+
+   // Route::get('/feedback.html', 'Aggregator\IndexController@indexFeedback') -> name('indexFeedback');
+   // Route::post('/feedback.html', 'Aggregator\IndexController@addFeedback') -> name('addFeedback');
+   // Route::get('/categories.html', 'Aggregator\IndexController@getCategories') -> name('categories');
+    //Route::get('/category/{id}.html', 'Aggregator\IndexController@getCategory') -> name('category');
     Route::get('/category/{id}/new{idn}.html', 'Aggregator\IndexController@getNews') -> name('news');
 
     Route::get('/auth.html', 'Aggregator\IndexController@getIndexAuth') -> name('auth');
     Route::post('/auth.html', 'Aggregator\IndexController@checkAuth') ->name('checkAuth');
     Route::get('/admin/add_news.html', 'Aggregator\AdminController@indexAddNews') -> name('adminIndexAdd');
     Route::post('/admin/add_news.html', 'Aggregator\AdminController@addNews') -> name('addNews');
-    Route::get('/feedback.html', 'Aggregator\IndexController@indexFeedback') -> name('indexFeedback');
-    Route::post('/feedback.html', 'Aggregator\IndexController@addFeedback') -> name('addFeedback');
+
     Route::get('/order_data.html', 'Aggregator\IndexController@indexOrderData') -> name('orderData');
     Route::post('/order_data.html', 'Aggregator\IndexController@makeOrderData') -> name('makeOrderData');
+
 });
+
+
