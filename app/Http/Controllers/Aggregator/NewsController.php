@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\News;
 use Illuminate\Http\Request;
+use App\Http\Requests\AggregatorNewsRequest;
 
 class NewsController extends Controller
 {
@@ -38,7 +39,7 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AggregatorNewsRequest $request)
     {
 
         $name = $request->input('name');
@@ -102,7 +103,7 @@ class NewsController extends Controller
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $news)
+    public function update(AggregatorNewsRequest $request, News $news)
     {
         $news->name = $request->input('name');
         $news->detail = $request->input('detail');

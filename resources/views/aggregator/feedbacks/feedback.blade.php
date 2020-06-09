@@ -15,7 +15,13 @@
                     <td>{{ $feedback->name }}</td>
                     <td>{{ $feedback->feedback }}</td>
                     <td><a href="{{ route('feedback.edit', ['feedback' => $feedback]) }}">Edit</a></td>
-                    <td><a href="{{ route('feedback.destroy', ['feedback' => $feedback]) }}">Delete</a></td>
+                    <td><form action="{{route('feedback.destroy', ['feedback' => $feedback])}}"
+                              id="delete_{{$feedback->id}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input  type="submit" class="delete_news" value="Delete" form="delete_{{$feedback->id}}">
+                        </form>
+                    </td>
                 </tr>
                 </tr>
             @endforeach
@@ -26,10 +32,28 @@
             <label class="feedback_form_label">
                 <p class="auth_input_text">Введите своё имя</p>
                 <input type="text" placeholder="Имя пользователя" class="feedback_input" value="{{old('name')}}" name="name">
+                <div class="container_feedback_alert_error">
+                    @if($errors->has('name'))
+                        <div class="add_feedback_alert_error">
+                            @foreach($errors->get('name') as $error)
+                                <p class="text_news_error">{{$error}}</p>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
             </label>
             <label class="feedback_form_label">
                 <p class="auth_input_text">Введите отзыв</p>
                 <textarea type="text" class="feedback_textarea" placeholder="Напишите отзыв о работе сайта" name="feedback">{{ old('feedback') }}</textarea>
+                <div class="container_feedback_alert_error">
+                    @if($errors->has('feedback'))
+                        <div class="add_feedback_alert_error">
+                            @foreach($errors->get('feedback') as $error)
+                                <p class="text_news_error">{{$error}}</p>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
             </label>
             <input type="submit" value="Отправить комментарий" class="feedback_form_submit" name="submin_feedback_on">
 

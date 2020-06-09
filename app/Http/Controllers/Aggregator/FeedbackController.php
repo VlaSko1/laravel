@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Aggregator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AggregatorFeedbackRequest;
 use App\Models\Feedback;
 use Illuminate\Http\Request;
+
 
 class FeedbackController extends Controller
 {
@@ -39,7 +41,7 @@ class FeedbackController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AggregatorFeedbackRequest $request)
     {
         $title = $request->input('name');
         $feedback = $request->input('feedback');
@@ -85,7 +87,7 @@ class FeedbackController extends Controller
      * @param  \App\Models\Feedback  $feedback
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Feedback $feedback)
+    public function update(AggregatorFeedbackRequest $request, Feedback $feedback)
     {
         $feedback->name = $request->input('name');
         $feedback->feedback = $request->input('feedback');
@@ -107,7 +109,11 @@ class FeedbackController extends Controller
     public function destroy(Feedback $feedback)
     {
 
-         dd($feedback);
+        if($feedback->delete()) {
+            return redirect()->route('feedback.index')
+                ->with('success', 'Отзыв успешно удален.');
+        }
+        return back()->with('error', 'Не удалось удалить отзыв');
 
     }
 

@@ -24,8 +24,22 @@ class AggregatorFeedbackRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'feedback' => 'required'
+            'name' => [
+                'required',
+                'min:2',
+                'max:120'
+                ],
+            'feedback' => [
+                'required',
+                'min:5'
+                ]
+        ];
+    }
+    public function attributes()
+    {
+        return [
+            'name' => '"Имя пользователя"',
+            'feedback' => '"Отзыв"'
         ];
     }
 }

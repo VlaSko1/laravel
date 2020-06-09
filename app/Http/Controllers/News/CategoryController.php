@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\News;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Category1Request;
 use App\Models\Category1;
+use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -38,21 +40,23 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Category1Request $request)
     {
-        $title = $request->input('title');
-        $slug = $request->input('slug');
 
-        $category = Category1::create([
-            'title' => $title,
-            'slug' => $slug
-        ]);
-        if($category){
-           return redirect()->route('categories.index')
-               ->with('success', 'Категория успешно добавлена.');
-        }
+            $title = $request->input('title');
+            $slug = $request->input('slug');
 
-        return back()->with('error', 'Не удалось добавить категорию.');
+            $category = Category1::create([
+                'title' => $title,
+                'slug' => $slug
+            ]);
+            if ($category) {
+                return redirect()->route('categories.index')
+                    ->with('success', 'Категория успешно добавлена.');
+            }
+
+            return back()->with('error', 'Не удалось добавить категорию.');
+
     }
 
     /**

@@ -5,6 +5,8 @@
     <title>Новости</title>
 </head>
 <body>
+@include('news.partials.messages')
 @yield('content')
 </body>
+
 </html>

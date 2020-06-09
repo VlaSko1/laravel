@@ -8,14 +8,41 @@
             <label class="add_news_label">
                 <p class="add_news_input_text">Введите новое название новости:</p>
                 <textarea placeholder="Новое название новости" class="add_news_textarea textarea_name" name="name">{{ $news->name }}</textarea>
+                <div class="container_news_alert_error">
+                    @if($errors->has('name'))
+                        <div class="add_news_alert_error">
+                            @foreach($errors->get('name') as $error)
+                                <p class="text_news_error">{{$error}}</p>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
             </label>
             <label class="add_news_label">
                 <p class="add_news_input_text">Введите новый краткий текст новости</p>
                 <textarea class="add_news_textarea textarea_briefly" placeholder="Новое краткое описание новости" name="briefly">{{ $news->briefly }}</textarea>
+                <div class="container_news_alert_error">
+                    @if($errors->has('briefly'))
+                        <div class="add_news_alert_error">
+                            @foreach($errors->get('briefly') as $error)
+                                <p class="text_news_error">{{$error}}</p>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
             </label>
             <label class="add_news_label">
                 <p class="add_news_input_text">Введите новый полный текст новости</p>
                 <textarea class="add_news_textarea textarea_detail" placeholder="Новый полный текст новости" name="detail">{{ $news->detail }}</textarea>
+                <div class="container_news_alert_error">
+                    @if($errors->has('detail'))
+                        <div class="add_news_alert_error">
+                            @foreach($errors->get('detail') as $error)
+                                <p class="text_news_error">{{$error}}</p>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
             </label>
             <label class="add_news_select">
                 <p class="add_news_input_text">Опубликовать новость?</p>

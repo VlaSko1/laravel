@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Models\News;
 use Illuminate\Http\Request;
+use App\Http\Requests\AggregatorCategoryRequest;
 
 class AggregatorCategoryController extends Controller
 {
@@ -41,7 +42,7 @@ class AggregatorCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AggregatorCategoryRequest $request)
     {
         $category = $request->input('category');
 
@@ -94,7 +95,7 @@ class AggregatorCategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(AggregatorCategoryRequest $request, Category $category)
     {
         $category->category = $request->input('category');
 

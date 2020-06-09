@@ -34,6 +34,7 @@ Route::group(['prefix' => 'aggregator'], function() {
     Route::resource('/categories', 'Aggregator\AggregatorCategoryController');
     Route::resource('/feedback', 'Aggregator\FeedbackController');
     Route::resource('/news', 'Aggregator\NewsController');
+    Route::resource('/order', 'Aggregator\OrderController');
 
    // Route::get('/feedback.html', 'Aggregator\IndexController@indexFeedback') -> name('indexFeedback');
    // Route::post('/feedback.html', 'Aggregator\IndexController@addFeedback') -> name('addFeedback');
@@ -46,9 +47,21 @@ Route::group(['prefix' => 'aggregator'], function() {
     Route::get('/admin/add_news.html', 'Aggregator\AdminController@indexAddNews') -> name('adminIndexAdd');
     Route::post('/admin/add_news.html', 'Aggregator\AdminController@addNews') -> name('addNews');
 
-    Route::get('/order_data.html', 'Aggregator\IndexController@indexOrderData') -> name('orderData');
-    Route::post('/order_data.html', 'Aggregator\IndexController@makeOrderData') -> name('makeOrderData');
+    //Route::get('/order_data.html', 'Aggregator\IndexController@indexOrderData') -> name('orderData');
+    //Route::post('/order_data.html', 'Aggregator\IndexController@makeOrderData') -> name('makeOrderData');
 
 });
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

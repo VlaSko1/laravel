@@ -26,7 +26,7 @@
                                 <li class="main_menu_list"><a href="{{route('categories.index')}}" class="link_nav">Категории новостей</a></li>
                                 <li class="main_menu_list"><a href="{{route('auth')}}" class="link_nav">Авторизация</a></li>
                                 <li class="main_menu_list"><a href="{{route('news.create')}}" class="link_nav">Добавить новость</a></li>
-                                <li class="main_menu_list"><a href="{{route('orderData')}}" class="link_nav">Выгрузка данных</a></li>
+                                <li class="main_menu_list"><a href="{{route('order.create')}}" class="link_nav">Выгрузка данных</a></li>
                                 <li class="main_menu_list"><a href="{{route('feedback.index')}}" class="link_nav">Обратная связь</a></li>
                             </ul>
                         </nav>
@@ -47,7 +47,7 @@
                 <li class="main_menu_list"><a href="{{route('categories.index')}}" class="link_nav">Категории новостей</a></li>
                 <li class="main_menu_list"><a href="{{route('auth')}}" class="link_nav">Авторизация</a></li>
                 <li class="main_menu_list"><a href="{{route('news.create')}}" class="link_nav">Добавить новость</a></li>
-                <li class="main_menu_list"><a href="{{route('orderData')}}" class="link_nav">Выгрузка данных</a></li>
+                <li class="main_menu_list"><a href="{{route('order.create')}}" class="link_nav">Выгрузка данных</a></li>
                 <li class="main_menu_list"><a href="{{route('feedback.index')}}" class="link_nav">Обратная связь</a></li>
             </ul>
         </nav>
