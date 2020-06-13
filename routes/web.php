@@ -12,21 +12,32 @@ Route::get('/interests', 'IndexController@interests') -> name('interests');
 Route::get('/awards', 'IndexController@awards') -> name('awards');
 Route::get('/image', 'Articles\IndexController@getProfileImage');
 
-Route::group(['prefix' => 'admin'], function() {
+
+Route::group(['middleware'=> 'auth'], function() {
+    // For auth routes
 
 
-    Route::get('/articles.html', 'Articles\IndexController@listArticles')
-        ->name('articles');
-    Route::get('/articles/{id}.html', 'Articles\IndexController@getArticle')
-        ->name('article');
+    // For admin routes
+    Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
+        Route::get('/', function () {
+            echo "Привет, я админ";
+        })->name('admin');
 
-    Route::post('/articles.html', 'Articles\IndexController@saveArticle');
+        Route::get('/articles.html', 'Articles\IndexController@listArticles')
+            ->name('articles');
+        Route::get('/articles/{id}.html', 'Articles\IndexController@getArticle')
+            ->name('article');
 
-    //news
-    Route::resource('/categories', 'News\CategoryController');
-    Route::resource('/news', 'News\News1Controller');
+        Route::post('/articles.html', 'Articles\IndexController@saveArticle');
+
+        //news
+        Route::resource('/categories', 'News\CategoryController');
+        Route::resource('/news', 'News\News1Controller');
+
+    });
 
 });
+
 
 Route::group(['prefix' => 'aggregator'], function() {
 
@@ -58,9 +69,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/test', function () {
+    session() -> put('test', 'Hello Session!');
+    dd(session()->all());
+});
+Route::get('/logout', function () {
+   Auth::logout();
+   return redirect('/');
+});
 
 Auth::routes();
 

@@ -15,7 +15,10 @@ class News1Controller extends Controller
      */
     public function index()
     {
-       $news = News1::where('status', 'published')->paginate(1);
+        //$news = News1::all();
+
+       $news = News1::where('status', 'published')->Orwhere('status', 'draft')->paginate(10);
+       // dd($news);
        return view('news.index', ['news' => $news]);
     }
 
