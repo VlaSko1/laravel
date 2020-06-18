@@ -34,12 +34,29 @@ header {
 .logo {
     height: 250px;
     width: 250px;
+    position: relative;
 
 }
 .logo__img {
     max-height: 250px;
     max-width: 250px;
     outline: none;
+}
+.auth_logo{
+    text-decoration: none;
+    font-size: 16px;
+    margin-right: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    color: blue;
+}
+.auth_logo:hover{
+    color: #2F4F4F;
+}
+.auth_logo:active{
+    color: red;
+}
+.logo_logout{
+    margin-left: 5px;
 }
 h1 {
     margin: 0;
