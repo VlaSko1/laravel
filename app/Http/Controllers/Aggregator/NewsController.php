@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Aggregator;
 
+use App\Events\AddNewsEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\News;
@@ -58,6 +59,10 @@ class NewsController extends Controller
             'source_id' => $source_id,
         ]);
         if($news) {
+            //add event
+            event(new AddNewsEvent($news));
+            // end add event
+
             return redirect()->route('news.create')
                 ->with('success', 'Новость успешно добавлена.');
         }
@@ -74,7 +79,6 @@ class NewsController extends Controller
     public function show(News $news)
     {
         $category = Category::all()->find($news->category_id);
-
         return view('aggregator.news.news', [
             'category' => $category,
             'news' => $news

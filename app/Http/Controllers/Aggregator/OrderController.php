@@ -16,7 +16,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-
+        $resources = (new Order)->loadListPage;
+        return view('aggregator.order.orderData', [
+            'resources' => $resources
+        ]);
     }
 
     /**
@@ -26,10 +29,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('aggregator.order.orderData', [
-            'categories' => $categories
-        ]);
+        //
     }
 
     /**
@@ -49,9 +49,9 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show()
     {
-        //
+       //
     }
 
     /**

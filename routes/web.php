@@ -47,10 +47,7 @@ Route::group(['prefix' => 'aggregator'], function() {
     Route::resource('/news', 'Aggregator\NewsController');
     Route::resource('/order', 'Aggregator\OrderController');
 
-   // Route::get('/feedback.html', 'Aggregator\IndexController@indexFeedback') -> name('indexFeedback');
-   // Route::post('/feedback.html', 'Aggregator\IndexController@addFeedback') -> name('addFeedback');
-   // Route::get('/categories.html', 'Aggregator\IndexController@getCategories') -> name('categories');
-    //Route::get('/category/{id}.html', 'Aggregator\IndexController@getCategory') -> name('category');
+
     Route::get('/category/{id}/new{idn}.html', 'Aggregator\IndexController@getNews') -> name('news');
 
     Route::get('/auth.html', 'Aggregator\IndexController@getIndexAuth') -> name('auth');
@@ -58,9 +55,23 @@ Route::group(['prefix' => 'aggregator'], function() {
     Route::get('/admin/add_news.html', 'Aggregator\AdminController@indexAddNews') -> name('adminIndexAdd');
     Route::post('/admin/add_news.html', 'Aggregator\AdminController@addNews') -> name('addNews');
 
-    //Route::get('/order_data.html', 'Aggregator\IndexController@indexOrderData') -> name('orderData');
-    //Route::post('/order_data.html', 'Aggregator\IndexController@makeOrderData') -> name('makeOrderData');
+
     Auth::routes();
+
+    //networks
+    Route::get('/auth/vk', 'Auth\VkController@login')->name('vk.login');
+    Route::get('/auth/callback', 'Auth\VkController@response')->name('vk.callback');
+    Route::get('/auth/fb', 'Auth\FacebookController@login')->name('fb.login');
+    Route::get('/auth/fb_callback', 'Auth\FacebookController@response')->name('fb.callback');
+
+    //для загрузки курса валют и новостей Яндекс Оружие
+    Route::post('/loading_data', 'Aggregator\LoadingController@loadData')->name('loadData');
+
+    //для получения новостей яндекс наука и сохранения их в БД,
+    Route::get('/yandex_science_css', 'Aggregator\YScienceController@showNews')->name('yScience');
+
+
+
     Route::get('/logout', function () {
         Auth::logout();
         return redirect('/aggregator/index.html');
@@ -85,8 +96,17 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/test', function () {
-    session() -> put('test', 'Hello Session!');
-    dd(session()->all());
+    $xml = \XmlParser::load('https://news.yandex.ru/army.rss');
+
+    //dd($xml);
+    $item = $xml->parse([
+        'title'=>['uses' => 'channel.title'],
+        'link' => ['uses' => 'channel.link'],
+        'description' => ['uses' => 'channel.description'],
+        'lastBuildDate' => ['uses' => 'channel.pubDate'],
+        'news' => ['uses' => 'channel.item[title,link,description,pubDate]']
+    ]);
+    dd($item);
 });
 Route::get('/logout', function () {
    Auth::logout();

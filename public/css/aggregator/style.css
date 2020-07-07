@@ -5,6 +5,7 @@ body, html {
     height: 100%;
     margin: 0;
     min-width: 1000px;
+    font-family: "Times New Roman", Times, Serif;
 }
 .wrapper {
     min-height: 100%;
@@ -460,6 +461,28 @@ footer{
     height: 30px;
     width: 160px;
 }
+.order_select{
+    height: 30px;
+    width: 260px;
+    font-size: 16px;
+    font-family: "Times New Roman", Times, Serif;
+}
+/* Стили для страницы выгрузки курсов валют от центрабанка*/
+.valute_table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.valute_table_th{
+    text-align: left;
+    height: 30px;
+    border-bottom: 1px solid black;
+}
+.valute_table td{
+    height: 30px;
+    border-bottom: 1px solid black;
+}
+
+
 
 /* Стили для страницы - создать категорию */
 .create_category_form {
