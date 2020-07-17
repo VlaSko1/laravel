@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 
 //Route::view('/', 'welcome');
 
+// Реализация примера загрузки файла (в продакшене удали)
+Route::get('/upload_file', 'UploadController@index')->name("upload_index");
+Route::post('/upload_file_save', 'UploadController@save')->name("upload_save");
+
+// Конец реализации примера загрузки файла (не забудь удалить в продакшене)
+
 Route::get('/', 'IndexController@index') -> name('about');
 Route::get('/experience', 'IndexController@experience') -> name('experience');
 Route::get('/education', 'IndexController@education') -> name('education');
@@ -116,3 +122,7 @@ Route::get('/logout', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+// Контроллер для тестового добавления job на уроке №10
+Route::get('/news/rss', 'Articles\TestController@news');

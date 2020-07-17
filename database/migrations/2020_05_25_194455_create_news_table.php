@@ -24,6 +24,7 @@ class CreateNewsTable extends Migration
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('source_id')->references('id')->on('sources');
+            //$table->index('category_id'); - На внешние ключи всегда лучше вешать индекс для улучшения сортировки.
         });
     }
 
