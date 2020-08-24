@@ -33,7 +33,7 @@
             </label>
             <label class="add_news_label">
                 <p class="add_news_input_text">Введите новый полный текст новости</p>
-                <textarea class="add_news_textarea textarea_detail" placeholder="Новый полный текст новости" name="detail">{{ $news->detail }}</textarea>
+                <textarea class="add_news_textarea textarea_detail" id="text" placeholder="Новый полный текст новости" name="detail">{!! $news->detail !!}</textarea>
                 <div class="container_news_alert_error">
                     @if($errors->has('detail'))
                         <div class="add_news_alert_error">
@@ -68,3 +68,9 @@
 
     </section>
 @endsection
+@push('js')
+    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        CKEDITOR.replace('text')
+    </script>
+@endpush

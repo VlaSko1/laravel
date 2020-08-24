@@ -42,7 +42,9 @@
                                 <li class="main_menu_list"><a href="{{route('yScience')}}" class="link_nav">Яндекс Наука</a></li>
                                 @if(isset(auth()->user()->is_admin) && auth()->user()->is_admin === 1)
                                     <li class="main_menu_list"><a href="{{route('adminProfileIndex')}}" class="link_nav">Редактор профилей</a></li>
+                                    <li class="main_menu_list"><a href="{{route('resource.index')}}" class="link_nav">Источники</a></li>
                                 @endif
+                                <li class="main_menu_list"><a href="{{route('YNewsCategories')}}" class="link_nav">Яндекс новости</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -68,12 +70,15 @@
                 <li class="main_menu_list"><a href="{{route('yScience')}}" class="link_nav">Яндекс Наука</a></li>
                 @if(isset(auth()->user()->is_admin) && auth()->user()->is_admin === 1)
                     <li class="main_menu_list"><a href="{{route('adminProfileIndex')}}" class="link_nav">Редактор профилей</a></li>
+                    <li class="main_menu_list"><a href="{{route('resource.index')}}" class="link_nav">Источники</a></li>
                 @endif
+                <li class="main_menu_list"><a href="{{route('YNewsCategories')}}" class="link_nav">Яндекс новости</a></li>
             </ul>
         </nav>
         <p class="footer_year">1996 - @php echo date('Y') @endphp годы</p>
 
     </footer>
 </div>
+@stack('js')
 </body>
 </html>

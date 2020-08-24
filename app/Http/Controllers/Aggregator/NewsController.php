@@ -42,7 +42,6 @@ class NewsController extends Controller
      */
     public function store(AggregatorNewsRequest $request)
     {
-
         $name = $request->input('name');
         $detail = $request->input('detail');
         $briefly = $request->input('briefly');

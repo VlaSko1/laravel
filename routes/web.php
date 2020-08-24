@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 
 //Route::view('/', 'welcome');
 
+// Реализация примера загрузки файла (в продакшене удали)
+Route::get('/upload_file', 'UploadController@index')->name("upload_index");
+Route::post('/upload_file_save', 'UploadController@save')->name("upload_save");
+
+// Конец реализации примера загрузки файла (не забудь удалить в продакшене)
+
 Route::get('/', 'IndexController@index') -> name('about');
 Route::get('/experience', 'IndexController@experience') -> name('experience');
 Route::get('/education', 'IndexController@education') -> name('education');
@@ -54,6 +60,7 @@ Route::group(['prefix' => 'aggregator'], function() {
     Route::post('/auth.html', 'Aggregator\IndexController@checkAuth') ->name('checkAuth');
     Route::get('/admin/add_news.html', 'Aggregator\AdminController@indexAddNews') -> name('adminIndexAdd');
     Route::post('/admin/add_news.html', 'Aggregator\AdminController@addNews') -> name('addNews');
+    Route::resource('/resource', 'Aggregator\ResourceController');
 
 
     Auth::routes();
@@ -69,6 +76,11 @@ Route::group(['prefix' => 'aggregator'], function() {
 
     //для получения новостей яндекс наука и сохранения их в БД,
     Route::get('/yandex_science_css', 'Aggregator\YScienceController@showNews')->name('yScience');
+
+    //для получения всех новостей яндекса и сохранения их в БД
+    Route::get('/yandex_news', 'Aggregator\YNewsController@showCategoryYNews')->name('YNewsCategories');
+    //для получения отдельной категории яндекс новостей и её отображения
+    Route::get('/yandex_category_news/{id}', 'Aggregator\YNewsController@showOneCategoryNews')->name('oneCategoryNews');
 
 
 
@@ -116,3 +128,7 @@ Route::get('/logout', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+// Контроллер для тестового добавления job на уроке №10
+Route::get('/news/rss', 'Articles\TestController@news');

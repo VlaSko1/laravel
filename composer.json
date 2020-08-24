@@ -17,8 +17,10 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "orchestra/parser": "^5.0",
+        "predis/predis": "^1.1",
         "socialiteproviders/facebook": "^1.0",
-        "socialiteproviders/vkontakte": "^4.1"
+        "socialiteproviders/vkontakte": "^4.1",
+        "unisharp/laravel-filemanager": "^2.1"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.7",
