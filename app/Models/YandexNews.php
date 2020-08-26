@@ -19,4 +19,10 @@ class YandexNews extends Model
         'published',
         'category_parsing_id'
     ];
+
+    // Метод возвращает новости соответствующие полученному идентификатору категории, разрешенные для публикации
+    public function getNews($id)
+    {
+        return YandexNews::where('category_parsing_id', $id)->where('published', 1)->orderBy('pubDate', 'desc')->get();
+    }
 }

@@ -6,16 +6,13 @@ use App\Jobs\NewsParsing;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\YandexNews;
+use App\Models\Resource;
 
 class YNewsController extends Controller
 {
     public function showCategoryYNews()
     {
-        $soursesYandex = \DB::table('resources')
-            ->join('sources', 'resources.source_id', '=', 'sources.id')
-            ->join('categoryes_parsing', 'resources.category_parsing_id', '=', 'categoryes_parsing.id')
-            ->select('resources.link', 'resources.slug', 'sources.source', 'categoryes_parsing.category_parsing', 'categoryes_parsing.id')
-            ->where('sources.source', 'yandex.ru')->get();
+        $soursesYandex = (new Resource())->getResourcesYandex();
         
         // Получаем массив ссылок для загрузки новостей
         $linkes = [];
@@ -42,11 +39,11 @@ class YNewsController extends Controller
 
     public function showOneCategoryNews($id)
     {
-        $category = \DB::table('categoryes_parsing')->where('id', '=', $id)->value('category_parsing');
+        // Получаем нужную категорию по ее id 
+        $category = (new Resource())->getCategory($id);
         
-        $news = YandexNews::where('category_parsing_id', $id)
-            ->where('published', 1)
-            ->orderBy('pubDate', 'desc')->get();
+        // Получаем список новостей соответствующей полученной категории, готовых для публикации (published = 1)
+        $news = (new YandexNews())->getNews($id);
         
         return view('aggregator.y_news.newsOneCategory', [
             'news' => $news,
